@@ -26,5 +26,8 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     /* 关闭 indent 错误  就是缩进检测 */
+    'indent':'off' ,
+    /* 关闭函数名前面自动空格的问题 */
+    'space-before-function-paren':'off'
   }
 }
