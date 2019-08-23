@@ -6,17 +6,12 @@
 
 <script>
 export default {
-  // 三种方法都可以
-   props:{ // 完整写法
-    addTodo:{// Header 组价对象就多了个方法
-      type:Function,
-      required:true
+  props: {
+    addTodo: {
+      type: Function,
+      required: true
     }
   },
-  /*   props:['addTodo'], */
- /*  props: {
-    addTodo:Object
-  }, */
   data() {
     return {
       title: ''
@@ -24,10 +19,9 @@ export default {
   },
   methods: {
     add() {
-      // 根据输入的数据准备一个todo对象
       const title = this.title.trim()
       if (!title) {
-        alert('请先输入')
+        alert('请输入')
         return
       }
       const todo = {
@@ -38,7 +32,7 @@ export default {
       // 向App的todos添加一个todo
       this.addTodo(todo)
       // 清除输入
-      this.title=''
+      this.title = ''
     }
   }
 }

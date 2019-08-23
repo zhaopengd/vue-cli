@@ -7,14 +7,16 @@
 <script>
 export default {
   // 三种方法都可以
-   props:{ // 完整写法
-    addTodo:{// Header 组价对象就多了个方法
-      type:Function,
-      required:true
+  props: {
+    // 完整写法
+    addTodo: {
+      // Header 组价对象就多了个方法
+      type: Function,
+      required: true
     }
   },
-  /*   props:['addTodo'], */
- /*  props: {
+  /*   props:['addTodo'], 引号不要忘记 */
+  /*  props: {
     addTodo:Object
   }, */
   data() {
@@ -38,7 +40,7 @@ export default {
       // 向App的todos添加一个todo
       this.addTodo(todo)
       // 清除输入
-      this.title=''
+      this.title = ''
     }
   }
 }

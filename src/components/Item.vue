@@ -1,7 +1,7 @@
 <template>
   <li>
     <label>
-      <input type="checkbox" v-model="todo.complete" />
+      <input type="checkbox" />
       <span>{{todo.title}}</span>
     </label>
     <button class="btn btn-danger" style="display:none">删除</button>
@@ -10,7 +10,6 @@
 
 <script>
 export default {
-  // pops 以对象形式接收  参数名字 : 类型
   props: {
     todo: Object
   }
