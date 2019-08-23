@@ -1,21 +1,6 @@
-# vue-demo
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 组件化编码3大步骤
+  1. 拆分组件
+  2. 静态组件
+  3. 动态组件
+    - 动态初始化显示
+    - 交互
