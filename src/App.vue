@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <Header :addTodo="addTodo"></Header>
-        <List :todos="todos"></List>
+        <List :todos="todos" :del="del"></List>
         <Footer></Footer>
       </div>
     </div>
@@ -27,6 +27,10 @@ export default {
   methods: {
     addTodo(todo) {
       this.todos.unshift(todo)
+    },
+    del(index) {
+      alert(123)
+      this.todos.splice(index, 1)
     }
   },
   components: {

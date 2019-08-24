@@ -1,13 +1,13 @@
 <template>
   <ul class="todo-main">
     <!-- 此时的todo是每一条数据  根据数据条数生成多个item 组件 然后把数据传到item 进行显示 -->
-    <Item v-for="(todo) in todos" :key="todo.id" :todo="todo"></Item>
+    <Item v-for="(todo,index) in todos" :key="todo.id" :todo="todo" :index="index" :del="del"></Item>
   </ul>
 </template>
 <script>
 import Item from './Item'
 export default {
-  props: ['todos'],
+  props: ['todos', 'del'],
   components: {
     Item
   }

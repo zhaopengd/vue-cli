@@ -1,17 +1,44 @@
 <template>
-  <li>
+  <!-- mouseover进入子元素会触发离开的事件 -->
+  <li
+    :style="{background:bgColor}"
+    @mouseenter="handleEnter(true)"
+    @mouseleave="handleEnter(false)"
+  >
     <label>
       <input type="checkbox" />
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" style="display:none">删除</button>
+    <button class="btn btn-danger" v-show="isShow" @click="remove">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   props: {
-    todo: Object
+    todo: Object,
+    del: Function,
+    index: Number
+  },
+  data() {
+    return {
+      bgColor: 'white',
+      isShow: false
+    }
+  },
+  methods: {
+    handleEnter(isEnter) {
+      if (isEnter) {
+        this.bgColor = '#ccccc'
+        this.isShow = true
+      } else {
+        this.bgColor = 'white'
+        this.isShow = false
+      }
+    },
+    remove() {
+      this.del(this.index)
+    }
   }
 }
 </script>
@@ -39,7 +66,6 @@ li label li input {
 
 li button {
   float: right;
-  display: none;
   margin-top: 3px;
 }
 
