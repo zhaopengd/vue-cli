@@ -4,9 +4,10 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 export default {
   props: {
+    // 属性名 / 属性值的类型 / 属性的必要性
     addTodo: {
       type: Function,
       required: true
@@ -19,19 +20,21 @@ export default {
   },
   methods: {
     add() {
-      const title = this.title.trim()
+      // 根据输入的数据准备一个todo对象
+      let title = this.title.trim()
       if (!title) {
-        alert('请输入')
+        alert('请先输入')
         return
       }
       const todo = {
         id: Date.now(),
-        complate: false,
+        complete: false,
         title
       }
       // 向App的todos添加一个todo
       this.addTodo(todo)
       // 清除输入
+      // title = ''
       this.title = ''
     }
   }
@@ -47,7 +50,6 @@ export default {
   border-radius: 4px;
   padding: 4px 7px;
 }
-
 .todo-header input:focus {
   outline: none;
   border-color: rgba(82, 168, 236, 0.8);

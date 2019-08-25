@@ -1,20 +1,30 @@
 <template>
   <ul class="todo-main">
-    <!-- 此时的todo是每一条数据  根据数据条数生成多个item 组件 然后把数据传到item 进行显示 -->
-    <Item v-for="(todo,index) in todos" :key="todo.id" :todo="todo" :index="index" :del="del"></Item>
+    <Item
+      v-for="(todo, index) in todos"
+      :key="todo.id"
+      :todo="todo"
+      :deleteTodo="deleteTodo"
+      :index="index"
+      :updateTodo="updateTodo"
+    />
   </ul>
 </template>
-<script>
-import Item from './Item'
+
+<script type="text/ecmascript-6">
+import Item from './Item.vue'
 export default {
-  props: ['todos', 'del'],
+  // 声明接收标签属性: 属性名
+  // 接收到的所有标签属性数据都会成功当前组件对象的属性
+  props: ['todos', 'deleteTodo', 'updateTodo'],
   components: {
-    Item
+    // Item
   }
 }
 </script>
 
 <style scoped>
+/*main*/
 .todo-main {
   margin-left: 0px;
   border: 1px solid #ddd;
