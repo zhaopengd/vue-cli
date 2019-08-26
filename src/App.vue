@@ -22,6 +22,7 @@
           <div class="panel-body">
             <keep-alive>
               <!-- 标识在此显示当前路由组件界面 -->
+              <!-- router-view 管理了上面路由连接的两个组件 -->
               <router-view msg="abc"></router-view>
             </keep-alive>
           </div>

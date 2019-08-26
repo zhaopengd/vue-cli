@@ -5,7 +5,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    msg: String
+  }
+}
 </script>
 
 <style scoped>
