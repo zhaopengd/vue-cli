@@ -1,42 +1,58 @@
 <template>
   <div>
-    <div class="row">
-      <div class="card">
-        <a href="https://github.com/reactjs" target="_blank">
-          <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style="width: 100px" />
+    <h1 v-if="firstView">请输入关键字进行搜索</h1>
+    <h1 v-else-if="loading">请求中....</h1>
+    <h1 v-else-if="errorMsg">{{errorMsg}}</h1>
+    <!-- <div class="row" v-else> -->
+    <div class="row" v-else-if="users.length>0">
+      <div class="card" v-for="(user) in users" :key="user.username">
+        <a :href="user.url" target="_blank">
+          <img :src="user.avatar_url" style="width: 100px" />
         </a>
-        <p class="card-text">reactjs</p>
-      </div>
-      <div class="card">
-        <a href="https://github.com/reactjs" target="_blank">
-          <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style="width: 100px" />
-        </a>
-        <p class="card-text">reactjs</p>
-      </div>
-      <div class="card">
-        <a href="https://github.com/reactjs" target="_blank">
-          <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style="width: 100px" />
-        </a>
-        <p class="card-text">reactjs</p>
-      </div>
-      <div class="card">
-        <a href="https://github.com/reactjs" target="_blank">
-          <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style="width: 100px" />
-        </a>
-        <p class="card-text">reactjs</p>
-      </div>
-      <div class="card">
-        <a href="https://github.com/reactjs" target="_blank">
-          <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style="width: 100px" />
-        </a>
-        <p class="card-text">reactjs</p>
+        <p class="card-text">{{user.username}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      firstView: true,
+      loading: false,
+      users: [],
+      errorMsg: ''
+    }
+  },
+  mounted() {
+    // 绑定自定义事件监听
+    this.$bus.$on('search', async searchName => {
+      // 更新状态数据(请求中)
+      this.firstView = false
+      this.loading = true
+      // 发请求获取数据
+      const url = `https://api.github.com/search/users?q=${searchName}`
+      // 由于需要提示错误，所以用try catch 捕获错误
+      // 或者使用 请求拦截器 统一处理错误
+      try {
+        const response = await this.$axios(url)
+        //  请求成功 更新数据(成功)
+        const users = response.data.items.map(item => ({
+          username: item.login,
+          url: item.html_url,
+          avatar_url: item.avatar_url
+        }))
+        this.loading = false
+        this.users = users
+      } catch (error) {
+        // 请求失败 更新数据(失败)
+        this.loading = false
+        this.errorMsg = error.message
+      }
+    })
+  }
+}
 </script>
 
 <style scoped>
